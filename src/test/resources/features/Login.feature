@@ -11,4 +11,3 @@ Feature: User login
     And User enters invalid password
     When User clicks on Login button
     Then error message is displayed
-
