@@ -1,21 +1,21 @@
 package com.bdd_practise;
 
 import com.bdd_practise.Utils.PropertiesUtil;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.Properties;
+import static com.bdd_practise.Utils.GetBrowserDetails.getBrowserDriver;
 
 public class BaseClass {
 
     public static WebDriver driver;
+    static Properties properties = PropertiesUtil.loadApplicationProperties();
+    static Properties props = PropertiesUtil.loadFrameworkProperties();
 
     public static void initializeDriver(){
 
-        Properties properties = PropertiesUtil.loadApplicationProperties();
-        String url = properties.get("application.url").toString();
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        String url = properties.getProperty("application.url");
+        String browser = properties.getProperty("browser.driver");
+        driver = getBrowserDriver(browser);
         driver.get(url);
         driver.manage().window().maximize();
     }

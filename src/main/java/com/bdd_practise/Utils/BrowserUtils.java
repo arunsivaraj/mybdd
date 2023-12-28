@@ -1,8 +1,12 @@
 package com.bdd_practise.Utils;
 
 import com.bdd_practise.BaseClass;
+
+import org.junit.Assert;
 import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebElement;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -26,7 +30,6 @@ public class BrowserUtils extends BaseClass {
 
         String timeout = properties.getProperty("timeout.maximum");
         WebElement element = null;
-
         try {
             // WebDriverWait wait = new WebDriverWait(driver,Long.parseLong(timeout));
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(Long.parseLong(timeout)));
@@ -34,8 +37,15 @@ public class BrowserUtils extends BaseClass {
         } catch (Exception e) {
             System.out.println("Element not found");;
         }
-
         return element;
+
+    }
+
+
+    public static void validateText(String element, String expectedText) {
+        String actualText = findAndWaitForElement(element).getText();
+        Assert.assertTrue("Expected Text : " + expectedText + "is not matching with Actual Text : " + actualText,
+                expectedText.equals(actualText));
 
     }
 }

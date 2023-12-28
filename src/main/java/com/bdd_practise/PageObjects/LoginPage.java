@@ -8,8 +8,10 @@ public class LoginPage extends BaseClass {
 
     private static String txtEmail = "//input[@id='input-email']";
     private static String textPassoword ="//input[@id='input-password']";
-    private static String btnLogin="//input[@value='Login']";
-    private static String linkForgottenPassword="(//a[text()='Forgotten Password'])[1]";
+    private static String btnLogin = "//input[@value='Login']";
+    private static String linkForgottenPassword = "(//a[text()='Forgotten Password'])[1]";
+
+    private static String alertLoginError = "//div[contains[@class,'alert-danger')]";
 
 
     public static void enterUserName(String email){
@@ -29,4 +31,7 @@ public class LoginPage extends BaseClass {
     }
 
 
+    public static void validateInvalidLogin(String expectedMessage) {
+        BrowserUtils.validateText(alertLoginError, expectedMessage);
+    }
 }

@@ -10,5 +10,5 @@ Feature: User login
     Given User enters invalid username
     And User enters invalid password
     When User clicks on Login button
-    Then User is logged in successfully
+    Then error message is displayed
 
